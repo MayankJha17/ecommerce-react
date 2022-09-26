@@ -44,7 +44,7 @@ export default function Login() {
     if (loginSucess) {
         return (
             <>
-              <h1>Welcome on board</h1>
+                <h1>Welcome on board</h1>
             </>
         );
     }
@@ -67,6 +67,7 @@ export default function Login() {
                         </div>
                         <button type="submit" className="btn btn-primary mx-2 my-2">Submit</button>
                         <Link to='/signup'><button type="submit" className="btn btn-primary mx-2 my-2">Sign up</button></Link>
+                        <Link to='/forgotPassword'><button type="submit" className="btn btn-primary mx-2 my-2">Forgot your password?</button></Link>
                     </form>
                 </div>
                 <div><h3>{errorMsg}</h3></div>

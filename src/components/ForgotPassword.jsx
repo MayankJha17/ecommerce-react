@@ -4,6 +4,7 @@ export default function ForgotPassword() {
 
     const [email, setEmail] = useState("");
     const [validEmail , setValidEmail] = useState(false);
+    const [msg , setMsg] = useState('');
 
 
     const EmailHandler = (event) => {
@@ -22,17 +23,22 @@ export default function ForgotPassword() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }
         };
-        fetch("http://thinkfullyapi.dev.amediatek.com/user/"+email, requestOptions)
+        fetch("https://thinkfullyapi.dev.amediatek.com/user/forgot/"+email, requestOptions)
             .then(response => { return response.json() })
             .then(data => {
                  if(validate){
-                      setValidEmail(true);
+                      setValidEmail(true); 
+                      setMsg("A password reset link has been sent to your mail");
                  }
                  else{
                     setValidEmail(false);
                  }
             })
+            .catch((error)=> {
+                setMsg("Reset email cannot be send")
+            })
     }
+
 
     return (
         <>
@@ -41,10 +47,13 @@ export default function ForgotPassword() {
                     <div className="mb-3" >
                         <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                         <input type="email" className="form-control" onChange={EmailHandler} id="userName" name="userName" aria-describedby="emailHelp" value={email} />
-                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                        <div id="emailHelp" className="form-text">Please enter valid email ID</div>
                     </div>
                     <button type="submit" className="btn btn-primary mx-2 my-2">Submit</button>
                 </form>
+            </div>
+            <div className="container">
+                <h3>{msg}</h3>
             </div>
         </>
     )

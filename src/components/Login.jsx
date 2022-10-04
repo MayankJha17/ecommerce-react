@@ -31,7 +31,6 @@ export default function Login() {
                     setErrorMsg(data.message);
                 }
             })
-
     }
 
     const OnChangeInput = (event) => {
